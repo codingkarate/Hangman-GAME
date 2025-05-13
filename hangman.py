@@ -11,7 +11,7 @@ attempts_remaining = 6  # Max incorrect attempts allowed
 # Create a display for the word
 display_word = ['_' for _ in word_to_guess]
 
-print("🎮 Welcome to Hangman!")
+print("###Welcome to Hangman!###")
 print("Guess the word one letter at a time.")
 
 while attempts_remaining > 0 and '_' in display_word:
@@ -22,19 +22,27 @@ while attempts_remaining > 0 and '_' in display_word:
     guess = input("Enter a letter: ").lower()
     
     if not guess.isalpha() or len(guess) != 1:
-        print("⚠️ Please enter a single alphabetical character.")
+        print("----Please enter a single alphabetical character----")
         continue
     if guess in guessed_letters:
-        print("🔁 You've already guessed that letter.")
+        print("*You've already guessed that letter*")
         continue
 
     guessed_letters.add(guess)
     
     if guess in word_to_guess:
-        print("✅ Correct guess!")
+        print("Correct guess!!!")
         for i, letter in enumerate(word_to_guess):
             if letter == guess:
                 display_word[i] = guess
     else:
-        print("❌ Incorrect guess.")
+        print("Incorrect guess!!!")
         attempts_remaining -= 1
+
+        # Game over logic
+print("\n=======================")
+if '_' not in display_word:
+    print(" Congratulations! You guessed the word:", word_to_guess)
+else:
+    print("&& Game Over &&. The word was:", word_to_guess)
+print("=======================\n")
